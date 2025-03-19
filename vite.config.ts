@@ -56,10 +56,7 @@ export default defineConfig({
         },
       ],
       dts: 'src/auto-imports.d.ts',
-      dirs: [
-        'src/composables',
-        'src/stores',
-      ],
+      dirs: ['src/composables', 'src/stores'],
       vueTemplate: true,
     }),
 
@@ -89,13 +86,15 @@ export default defineConfig({
             rel: 'noopener',
           },
         })
-        md.use(await Shiki({
-          defaultColor: false,
-          themes: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark',
-          },
-        }))
+        md.use(
+          await Shiki({
+            defaultColor: false,
+            themes: {
+              light: 'vitesse-light',
+              dark: 'vitesse-dark',
+            },
+          }),
+        )
       },
     }),
 

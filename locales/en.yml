@@ -12,3 +12,8 @@ intro:
   aka: Also known as
   whats-your-name: What's your name?
 not-found: Not found
+filters:
+  title: Filter your search
+  vehicle_type: Vehicle Type
+  price_range: Price Range
+  minimum_rating: Minimum Rating

@@ -12,3 +12,8 @@ intro:
   aka: Aussi connu sous le nom de
   whats-your-name: Comment t'appelles-tu ?
 not-found: Page non trouvée
+filters:
+  title: Filtrez ces résultats
+  vehicle_type: Type de Véhicule
+  price_range: Prix
+  minimum_rating: Note Minimum

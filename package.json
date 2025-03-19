@@ -19,6 +19,7 @@
   "dependencies": {
     "@unhead/vue": "^1.11.15",
     "@unocss/reset": "^65.4.0",
+    "@vueform/slider": "^2.1.10",
     "@vueuse/core": "^12.4.0",
     "@vueuse/head": "^2.0.0",
     "beasties": "^0.2.0",
@@ -27,12 +28,13 @@
     "vue": "^3.5.13",
     "vue-demi": "^0.14.10",
     "vue-i18n": "^11.0.1",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vue-star-rating": "^2.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.13.0",
     "@iconify-json/carbon": "^1.2.5",
-    "@intlify/unplugin-vue-i18n": "^6.0.3",
+    "@intlify/unplugin-vue-i18n": "^6.0.5",
     "@shikijs/markdown-it": "^1.26.1",
     "@types/markdown-it-link-attributes": "^3.0.5",
     "@types/nprogress": "^0.2.3",
