@@ -34,7 +34,7 @@ function handleBack() {
 
 <template>
   <nav flex="~ gap-4" justify-between p-4 text-xl>
-    <button v-if="router.currentRoute.value.fullPath !== '/'" icon-btn :title="t('button.back')" @click="handleBack()">
+    <button v-if="router.currentRoute.value.fullPath !== '/'" class="nav-back" icon-btn :title="t('button.back')" @click="handleBack()">
       <div
         i-carbon-arrow-left
       />

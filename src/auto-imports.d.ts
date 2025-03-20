@@ -308,7 +308,7 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { VehicleState, Vehicle, Owner } from './stores/vehicle'
+  export type { VehicleState, Filter, Vehicle, Owner } from './stores/vehicle'
   import('./stores/vehicle')
 }
 
