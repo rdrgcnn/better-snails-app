@@ -2,18 +2,14 @@
 import Slider from '@vueform/slider'
 import StarRating from 'vue-star-rating'
 
-const props = defineProps({
-  vehicleTypes: Array<string>,
-  priceRange: {
-    min: Number,
-    max: Number,
-  },
-})
 const emit = defineEmits(['updateFilters'])
+const vehicleStore = useVehicleStore()
+const vehicleTypes = vehicleStore.getVehiclesType
+const priceRange = vehicleStore.getPriceRange
 const { t } = useI18n()
 
 const selectedType: Ref<string | null> = ref('')
-const selectedPriceRange: Ref<number[]> = ref([props.priceRange.min, props.priceRange.max])
+const selectedPriceRange: Ref<number[]> = ref([priceRange.min, priceRange.max])
 const selectedRating: Ref<number> = ref(0)
 
 function handleVehicleTypeChange(event: Event) {
@@ -34,7 +30,10 @@ function handleRatingChange(value: number) {
 function updateFilters() {
   emit('updateFilters', {
     type: selectedType.value,
-    priceRange: selectedPriceRange.value,
+    priceRange: {
+      min: selectedPriceRange.value[0],
+      max: selectedPriceRange.value[1],
+    },
     rating: selectedRating.value,
   })
 }

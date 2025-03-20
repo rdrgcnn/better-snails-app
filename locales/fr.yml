@@ -6,14 +6,21 @@ button:
   toggle_dark: Basculer en mode sombre
   toggle_langs: Changer de langue
 intro:
-  desc: Exemple d'application Vite
-  dynamic-route: Démo de route dynamique
-  hi: Salut, {name}!
-  aka: Aussi connu sous le nom de
-  whats-your-name: Comment t'appelles-tu ?
+  title: Bienvenue chez Better Snails
+  desc: Vous trouverez ici les meilleurs véhicules pour votre voyage
+  search: Rechercher
 not-found: Page non trouvée
 filters:
   title: Filtrez ces résultats
   vehicle_type: Type de Véhicule
   price_range: Prix
   minimum_rating: Note Minimum
+vehicle:
+  day: j
+  seats: places
+  beds: couchages
+  reviews: avis
+  from_price: À partir de
+  you_may_also_like: Vous aimerez aussi
+error:
+  data: Une erreur est survenue lors de la récupération des données

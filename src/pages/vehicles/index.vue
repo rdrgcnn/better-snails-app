@@ -1,58 +1,50 @@
 <script setup lang="ts">
+import type { Filter } from '~/stores/vehicle'
+import { createToaster } from '@meforma/vue-toaster'
 import { onMounted, ref } from 'vue'
+import Filters from '~/components/Filters.vue'
+import VehicleCard from '~/components/VehicleCard.vue'
 import { useVehicleStore } from '~/stores/vehicle'
-import Filters from './Filters.vue'
-import VehicleCard from './VehicleCard.vue'
 
 const isLoading = ref(false)
-const error = ref(null)
-const vehicles = useVehicleStore()
+const vehicleStore = useVehicleStore()
+const selectedFilters = ref<Filter>({
+  type: '',
+  rating: 0,
+})
+const toaster = createToaster()
+const { t } = useI18n()
 
 onMounted(async () => {
   isLoading.value = true
-  // loading mock data from /public/data.json
+  if (vehicleStore.vehicles?.length) {
+    isLoading.value = false
+  }
   try {
-    const response = await fetch('/data.json')
+    const targetUrl = 'https://gitlab.com/api/v4/snippets/2095016/raw'
+
+    const response = await fetch(targetUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     if (!response.ok) {
-      throw new Error('Network response was not ok')
+      throw new Error(t('error.data'))
     }
     const dataValue = await response.json()
-    vehicles.fromJSON(dataValue.results)
+    vehicleStore.fromJSON(dataValue.results)
   }
-  catch (e: any) {
-    error.value = e.message
+  catch (e) {
+    toaster.error(e.message)
   }
   finally {
     isLoading.value = false
   }
-
-  // try {
-  //   const targetUrl = 'https://gitlab.com/api/v4/snippets/2095016/raw'
-
-  //   const response = await fetch(targetUrl, {
-  //     method: 'GET',
-  //     headers: {
-  //       'PRIVATE-TOKEN': 'glpat-RmNeMekvWhwMFQC5yrFC',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   ('Response', response)
-  //   if (!response.ok) {
-  //     throw new Error('Network response was not ok')
-  //   }
-  //   // data.value = await response.text()
-  //   data.value = await response.json()
-  //   ('Data', data.value)
-  // }
-  // catch (e) {
-  //   error.value = e.message
-  // }
-  // finally {
-  //   isLoading.value = false
-  // }
 })
 
-function handleFilterChange(_type: string) {
+function handleFilterChange(filters: Filter) {
+  selectedFilters.value = filters
 }
 </script>
 
@@ -60,18 +52,24 @@ function handleFilterChange(_type: string) {
   <div v-if="isLoading">
     Loading...
   </div>
-  <div v-else-if="error">
-    {{ error }}
-  </div>
   <div v-else flex="~ gap-4">
     <div>
-      <Filters :vehicle-types="vehicles.getVehiclesType()" :price-range="vehicles.getPriceRange()" @update-filters="handleFilterChange" />
+      <Filters @update-filters="handleFilterChange" />
     </div>
-    <div flex-grow>
-      <VehicleCard v-for="vehicle in vehicles.vehicles" :key="vehicle.id" :vehicle="vehicle" />
+    <div flex="~ gap-8" flex-wrap>
+      <div v-if="vehicleStore.filterVehicles(selectedFilters).length === 0">
+        No vehicles found
+      </div>
+      <VehicleCard v-for="vehicle in vehicleStore.filterVehicles(selectedFilters)" :key="vehicle.id" class="card" :vehicle="vehicle" />
     </div>
   </div>
 </template>
+
+<style scoped>
+.card {
+  width: 400px;
+}
+</style>
 
 <route lang="yaml">
   meta:

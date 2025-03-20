@@ -1,7 +1,7 @@
 <template>
   <NavBar />
   <main
-    text="center gray-700 dark:gray-200" px-4 py-10
+    text="center gray-700 dark:gray-200" p-4
   >
     <RouterView />
   </main>

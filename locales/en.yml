@@ -6,14 +6,21 @@ button:
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
 intro:
-  desc: Opinionated Vite Starter Template
-  dynamic-route: Demo of dynamic route
-  hi: Hi, {name}!
-  aka: Also known as
-  whats-your-name: What's your name?
+  title: Welcome to Better Snails
+  desc: You can find the best vehicles for your trip here
+  search: Search
 not-found: Not found
 filters:
   title: Filter your search
   vehicle_type: Vehicle Type
   price_range: Price Range
   minimum_rating: Minimum Rating
+vehicle:
+  day: d
+  seats: seats
+  beds: beds
+  reviews: reviews
+  from_price: From
+  you_may_also_like: You may also like
+error:
+  data: An error occurred while fetching data

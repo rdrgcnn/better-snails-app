@@ -2,26 +2,24 @@
 defineOptions({
   name: 'IndexPage',
 })
-// const user = useUserStore()
-// const name = ref(user.savedName)
 
 const router = useRouter()
 function go() {
   router.push(`/vehicles`)
 }
 
-// const { t } = useI18n()
+const { t } = useI18n()
 </script>
 
 <template>
   <div>
-    Bonjour a tous, here are some trucks :
+    {{ t('intro.title') }}
     <div>
       <button
         m="3 t6" text-sm btn
         @click="go()"
       >
-        SEE THAT
+        {{ t('intro.search') }}
       </button>
     </div>
   </div>
